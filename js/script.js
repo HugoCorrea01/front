@@ -1,7 +1,6 @@
-// referencias
-const div_lista_imagens =document.getElementById('lista_imagens');
-const div_imagem= document.getElementById('imagem');
-
+// referências
+const div_lista_imagens = document.getElementById('lista_imagens');
+const div_imagem = document.getElementById('imagem');
 
 // modificando array para incluir o caminho das imagens
 minhas_imagens.forEach(
@@ -10,41 +9,43 @@ minhas_imagens.forEach(
     }
 )
 
-
-const cartao=(clicada ) => {
+const cartao = ( clicada ) => {
     const container = document.createElement('div');
     const imagem = document.createElement('img');
     const legenda = document.createElement('h5');
 
-    imagem.src = clicada.src
+    imagem.src = clicada.src;
     imagem.width = 200;
 
     legenda.innerHTML = clicada.alt;
-    container.appendChild(imagem)
-    container.appendChild(legenda)
-    div_imagem.appendChild(container)
-}
 
+    container.appendChild(imagem);
+    container.appendChild(legenda);
+
+    div_imagem.innerHTML = '';
+
+    div_imagem.appendChild(container);
+}
 
 //manipulando evento
-const manipula_evento = ( evento ) =>{
+const  manipula_evento = ( evento ) => {
     const imagem_clicada = evento.target;
-    cartao(imagem_clicada)
+    cartao(imagem_clicada);
 }
-const criar_imagens=(entrada) =>{
+
+const criar_imagens = (entrada) => {
     entrada.forEach(
-        (ele) => {
+        ( ele ) => {
             const imagem_numero = document.createElement('img');
             imagem_numero.src = ele.caminho;
-            imagem_numero.width= 100;
-            imagem_numero.className='imagem_da_lista';
-            imagem_numero.alt= ele.descricao
+            imagem_numero.width = 100;
+            imagem_numero.className = 'imagem_da_lista';
+            imagem_numero.alt = ele.descricao;
+            imagem_numero.onclick = manipula_evento;
 
             div_lista_imagens.appendChild(imagem_numero);
         }
     );
-
 }
 
-
-criar_imagens(minhas_imagens)
+criar_imagens(minhas_imagens);
